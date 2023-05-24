@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html>
 <head>
@@ -44,3 +45,51 @@
     </script>
 </body>
 </html>
+=======
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fruit Bar Chart Lab</title>
+    <style>
+        canvas {
+            border: 1px solid rgb(251, 246, 246);
+        }
+    </style>
+</head>
+<body>
+    <h1> Elmira's Fruit Bar Chart: </h1>
+    <canvas id="myCanvas" width="600" height="400"></canvas>
+    <script>
+        var canvas = document.getElementById("myCanvas");
+        var ctx = canvas.getContext("2d");
+
+        var fruit = [
+            {name:"Apple", quantity:20, color:"red"},
+            {name:"Orange", quantity:10, color:"orange"},
+            {name:"Banana", quantity:15, color:"yellow"},
+            {name:"Kiwi", quantity:5, color:"green"},
+            {name:"Blueberry", quantity:5, color:"blue"},
+            {name:"Grapes", quantity:10, color:"purple"}
+        ];
+
+        var x = 0;
+        var y = 0;
+        var barHeight = 50;
+        var maxBarWidth = 300;
+        var barSpacing = 5;
+
+        for (var i = 0; i < fruit.length; i++) {
+            var barWidth = (fruit[i].quantity / 20) * maxBarWidth;
+
+            ctx.fillStyle = fruit[i].color;
+            ctx.fillRect(x, y, barWidth, barHeight);
+
+            ctx.fillStyle = "red";
+            ctx.fillText(fruit[i].name, x + barWidth + 5, y + barHeight - 5);
+
+            y += barHeight + barSpacing;
+        }
+    </script>
+</body>
+</html>
+>>>>>>> 5297ec63559ccda6685e46e66443642a708e3871
