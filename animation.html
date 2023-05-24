@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        canvas {
+            border: 1px solid rgb(253, 11, 11);  
+            background-color: rgb(244, 17, 17);  
+        }
+    </style>
+</head>
+<body>
+    <canvas id="scene"></canvas>
+     <!-- The duck is a gif so adding the path for the duck gif, will position duck over the pond so it walks pass it -->
+    <img id="duck" src="images/walkingduck.gif" style="position: absolute; top: 0; left: 0; width: 300px; height: 300px; display: none;">
+    <script>
+        //adding in my javascript 
+        let canvas = document.getElementById('scene');
+        let ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        let imgBackground = new Image();
+        let imgBubble = new Image();
+        let duckImg = document.getElementById('duck');
+
+        
+        let imagesLoaded = 0;
+
+        imgBackground.onload = function() {
+            imagesLoaded++;
+            if (imagesLoaded === 2) {
+                //starting a loop after my images load
+                loop();  
+            }
+        }
+        //getting the path for my background photo
+        imgBackground.src = 'images/background.jpg'; 
+
+        imgBubble.onload = function() {
+            imagesLoaded++;
+            if (imagesLoaded === 2) {
+                loop();  
+            }
+        }
+        //getting the path for the bubble text!
+        imgBubble.src = 'images/bubble.png';  
+
+        let duckPos = {
+            x: 0,
+            y: canvas.height / 2,
+        };
+
+        let bubblePos = {
+            x: duckPos.x + 100,
+            y: duckPos.y - 100,
+            text: "Such nice nature!",
+        };
+
+        function draw() {
+            
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            //Drawing in the background
+            ctx.drawImage(imgBackground, 0, 0, canvas.width, canvas.height);
+
+            //The font for the text bubble, with white font since its a blue text bubble
+            ctx.drawImage(imgBubble, bubblePos.x, bubblePos.y, 200, 100);
+            ctx.fillStyle = 'White';
+            ctx.font = '20px Arial';
+            ctx.fillText(bubblePos.text, bubblePos.x + 20, bubblePos.y + 40);
+
+            //the ducks position
+            duckPos.x += 1;
+            if (duckPos.x > canvas.width) {
+                duckPos.x = -100;
+            }
+
+            bubblePos.x = duckPos.x + 100;
+            bubblePos.y = duckPos.y - 100;
+
+            //This will animate the duck
+            duckImg.style.display = 'block';
+            duckImg.style.left = duckPos.x + 'px';
+            duckImg.style.top = duckPos.y + 'px';
+        }
+        //looping the animation so its continues walking
+        function loop() {
+            requestAnimationFrame(loop);
+            draw();
+        }
+    </script>
+</body>
+</html>

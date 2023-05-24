@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sound Machine Lab</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .sound-machine {
+            background-color: #8ebf2b;
+            border: 4px solid #df41b7;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .sound-button {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #630ddb;
+            color: rgb(239, 162, 206);
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="sound-machine">
+        <h1>Sound Machine</h1>
+        <!-- Will now make an audio id that will take in the sound downloaded and using the onclick it will play the audio whenever it is being clicked -->
+        <audio id="Audio" src="sound.mp3"></audio>
+        <button class="sound-button" onclick="playAudio('Audio')">Sound</button>
+        <button class="sound-button" onclick="pauseAudio('Audio')">Pause</button>
+    </div>
+
+    <script>
+        function playAudio(audioId) {
+            var audio = document.getElementById(audioId);
+            audio.play();
+        }
+
+        function pauseAudio(audioId) {
+            var audio = document.getElementById(audioId);
+            audio.pause();
+        }
+    </script>
+</body>
+</html>

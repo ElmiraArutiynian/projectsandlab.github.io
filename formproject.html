@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Weight Converter</title>
+    <!-- Image below of tiger that will display on page -->
+    <style>
+        body {
+    background-image: url('images/sherry-christian-8Myh76_3M2U-unsplash.jpg');
+    background-size: cover;
+    color: white;
+             }
+
+    </style>
+    <script>
+        function convertWeights() {
+            const kgInput = document.getElementById('kgInput');
+            const lbInput = document.getElementById('lbInput');
+            const resultElement = document.getElementById('result');
+
+            const kg = parseFloat(kgInput.value);
+            const lb = parseFloat(lbInput.value);
+
+            const lbToKg = lb * 0.453592;
+            const kgToLb = kg * 2.20462;
+
+            if (!isNaN(kg)) {
+                resultElement.innerText = `${kg} kilograms is approximately ${kgToLb.toFixed(2)} pounds.`;
+            } else if (!isNaN(lb)) {
+                resultElement.innerText = `${lb} pounds is approximately ${lbToKg.toFixed(2)} kilograms.`;
+            } else {
+                resultElement.innerText = 'Please enter a valid weight.';
+            }
+        }
+
+        function resetForm() {
+            document.getElementById('kgInput').value = '';
+            document.getElementById('lbInput').value = '';
+            document.getElementById('result').innerText = '';
+        }
+    </script>
+</head>
+<body>
+    <h1>Weight Converter</h1>
+    <input type="text" id="kgInput" placeholder="Enter weight in kilograms">
+    <input type="text" id="lbInput" placeholder="Enter weight in pounds">
+    <button onclick="convertWeights()">Convert</button>
+    <button onclick="resetForm()">Reset</button>
+    <p id="result"></p>
+</body>
+</html>
